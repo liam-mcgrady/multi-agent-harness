@@ -1,0 +1,24 @@
+name: Drive metadata sync (opt-in)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 13 * * *"
+permissions:
+  contents: read
+jobs:
+  metadata-check:
+    if: ${{ vars.DRIVE_SYNC_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Query allowlisted Drive file versions
+        env:
+          GOOGLE_ACCESS_TOKEN: ${{ secrets.GOOGLE_ACCESS_TOKEN }}
+          DRIVE_ALLOWLIST_IDS: ${{ vars.DRIVE_ALLOWLIST_IDS }}
+          SYNC_SNAPSHOT_PATH: /tmp/drive-snapshot.json
+        run: python src/drive_sync.py
+      - name: Do not publish private metadata
+        run: echo "Version check finished; snapshot remains on ephemeral runner."

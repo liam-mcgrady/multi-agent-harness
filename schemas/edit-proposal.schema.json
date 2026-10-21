@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cross-agent edit proposal (connector mediated)",
+  "type": "object",
+  "required": [
+    "proposal_id",
+    "agent",
+    "target",
+    "operation",
+    "expected_revision",
+    "summary",
+    "approval_state"
+  ],
+  "properties": {
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation": {
+      "enum": [
+        "append_journal",
+        "edit_doc",
+        "edit_sheet_range",
+        "edit_github_file",
+        "propose_markdown_change"
+      ]
+    },
+    "expected_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approval_state": {
+      "enum": [
+        "draft",
+        "approved",
+        "rejected",
+        "applied"
+      ]
+    },
+    "result_revision": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

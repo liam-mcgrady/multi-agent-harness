@@ -7,7 +7,7 @@
 - Google Drive HARNESS.md and its companion files are authoritative for agent roles, schedule, academic and business context.
 - Google Doc "Agent Journal" is the append-only cross-agent decision / handoff log; routine work within an agent's lane does not require a Journal entry.
 - GitHub holds versioned **code, schemas, tests, non-sensitive implementation decisions, and change proposals**. No broad mirroring of confidential Drive content.
-- Muse coordinates and reconciles calendar/shared planning; ChatGPT implements mathematical reasoning, ML research and experiments, engineering, and technical documentation as requested. Other agents retain their stated lanes.
+- Resolve each agent's current role from the live authoritative harness. This repository does not expand lanes or grant connector permissions. Read/write policy and technically verified capabilities are separate.
 - Your Apple/iCloud calendar is the scheduling source of truth; a Google Calendar read view is not an authorized write destination.
 
 ## ChatGPT-mediated synchronization sequence
@@ -29,13 +29,13 @@
 
 - A rule granting agents conceptual rights **does not grant OAuth/API permissions**; each agent's connector controls its actual capabilities.
 - Never commit OAuth credentials, client secrets, private academic notes, PLUNJ sales records, financial data, or personal information into GitHub.
-- Per-item approvals remain mandatory for submitting applications, sending outreach, purchases or transfers. Drafting and internal updates do not constitute approval.
+- Preserve the live harness's restrictions on external actions. This protocol cannot authorize outreach, applications, purchases, or transfers; internal-update authorization does not authorize external actions.
 - The existing GitHub Actions Drive sync remains opt-in and inactive unless `DRIVE_SYNC_ENABLED=true` is explicitly configured.
 
 ## Triggering
 
 - On-demand: invoke ChatGPT for a specific update or use a scheduled ChatGPT task to inspect connected context when supported.
-- Daily review is already scheduled within ChatGPT. It identifies changed state but does not automatically write back to Drive or GitHub.
+- Verify any scheduled review in the task system before relying on it. This repository neither creates nor proves that a scheduled task exists.
 - Do not describe this workflow as real-time or continuous.
 
 ## First acceptance test

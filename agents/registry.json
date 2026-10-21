@@ -3,26 +3,31 @@
   "agents": [
     {
       "id": "muse",
-      "role": "executive_coordination"
+      "role_source": "live_authoritative_harness",
+      "capabilities": "verify_in_current_agent_session"
     },
     {
       "id": "claude",
-      "role": "academic_tutoring"
+      "role_source": "live_authoritative_harness",
+      "capabilities": "verify_in_current_agent_session"
     },
     {
       "id": "gemini",
-      "role": "sales_operations"
+      "role_source": "live_authoritative_harness",
+      "capabilities": "verify_in_current_agent_session"
     },
     {
       "id": "chatgpt",
-      "role": "math_ml_research_artifacts_engineering"
+      "role_source": "live_authoritative_harness",
+      "capabilities": "verify_in_current_agent_session"
     },
     {
       "id": "copilot",
-      "role": "code_implementation_and_review"
+      "role_source": "live_authoritative_harness",
+      "capabilities": "verify_in_current_agent_session"
     }
   ],
-  "shared_context": "Google Drive (authoritative until migrated)",
+  "shared_context": "Google Drive (authoritative; no migration implied)",
   "write_policy": "reviewed_changes",
-  "last_verified": "2026-10-20"
+  "last_verified": "2026-10-21"
 }

@@ -20,6 +20,7 @@ class AppendProposal:
     text: str
     approval: bool = False
     action: str = "append_journal"
+    tab_id: str = ""
 
 
 def validate_proposal(proposal, allowlist):
@@ -27,6 +28,8 @@ def validate_proposal(proposal, allowlist):
         raise PermissionError("Destination not in explicit writable allowlist")
     if not proposal.agent.strip() or not proposal.text.strip():
         raise ValueError("Agent and non-empty text are required")
+    if not proposal.tab_id.strip():
+        raise ValueError("An explicit Google Docs tab ID is required")
     if not proposal.expected_revision:
         raise ValueError("Expected document revision is required")
     if len(proposal.text) > 5000:
@@ -48,7 +51,7 @@ def append_document(proposal, token, allowlist, opener=None):
         raise DriveError("Stale revision: reload and resolve conflict before retry")
     endpoint = DOCS_API + "/documents/" + urllib.parse.quote(proposal.file_id, safe="") + ":batchUpdate"
     result = http_json(endpoint, token, method="POST", body={
-        "requests": [{"insertText": {"endOfSegmentLocation": {}, "text": proposal.text}}],
+        "requests": [{"insertText": {"endOfSegmentLocation": {"tabId": proposal.tab_id}, "text": proposal.text}}],
         "writeControl": {"requiredRevisionId": proposal.expected_revision},
     }, opener=opener)
     if not result.get("writeControl") and not result.get("documentId"):

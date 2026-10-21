@@ -1,0 +1,9 @@
+{
+  "note": "Metadata-only sync allowlist. No content or credentials are committed.",
+  "files": [
+    {"name": "HARNESS.md", "id": "1h-F6R79aFVh2QT5OA26F2O5hXVH_v3lv", "mode": "metadata_only"},
+    {"name": "Agent Journal", "id": "1k0OsbUIhOVo7ZHYtM3ZzkHRizStf-YrYcxUbmjfdg4o", "mode": "metadata_only"}
+  ],
+  "write_policy": "native_google_docs_only_explicit_approved_proposal",
+  "raw_markdown_writes": "disabled"
+}

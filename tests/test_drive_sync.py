@@ -48,25 +48,26 @@ class SyncTests(unittest.TestCase):
 
     def test_requires_approval(self):
         with self.assertRaises(PermissionError):
-            validate_proposal(AppendProposal("doc1", "rev-a", "chatgpt", "hello"), {"doc1"})
+            validate_proposal(AppendProposal("doc1", "rev-a", "chatgpt", "hello", tab_id="t.0"), {"doc1"})
 
     def test_no_raw_file_or_unknown_target(self):
         with self.assertRaises(PermissionError):
-            validate_proposal(AppendProposal("other", "rev-a", "chatgpt", "hello", True), {"doc1"})
+            validate_proposal(AppendProposal("other", "rev-a", "chatgpt", "hello", True, tab_id="t.0"), {"doc1"})
 
     def test_stale_revision_does_not_write(self):
         fake = FakeGoogle(rev="rev-b")
         with self.assertRaises(DriveError):
-            append_document(AppendProposal("doc1", "rev-a", "chatgpt", "hello", True), "token", {"doc1"}, fake)
+            append_document(AppendProposal("doc1", "rev-a", "chatgpt", "hello", True, tab_id="t.0"), "token", {"doc1"}, fake)
         self.assertTrue(all(call.get_method() == "GET" for call in fake.calls))
 
     def test_approved_append_uses_atomic_revision_guard(self):
         fake = FakeGoogle()
-        append_document(AppendProposal("doc1", "rev-a", "chatgpt", "hello", True), "token", {"doc1"}, fake)
+        append_document(AppendProposal("doc1", "rev-a", "chatgpt", "hello", True, tab_id="t.0"), "token", {"doc1"}, fake)
         posts = [x for x in fake.calls if x.get_method() == "POST"]
         self.assertEqual(len(posts), 1)
         payload = json.loads(posts[0].data)
         self.assertEqual(payload["writeControl"]["requiredRevisionId"], "rev-a")
+        self.assertEqual(payload["requests"][0]["insertText"]["endOfSegmentLocation"]["tabId"], "t.0")
 
     def test_empty_allowlist_rejected(self):
         with self.assertRaises(ValueError):

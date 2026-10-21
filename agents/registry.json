@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "agents": [
+    {
+      "id": "muse",
+      "role": "executive_coordination"
+    },
+    {
+      "id": "claude",
+      "role": "academic_tutoring"
+    },
+    {
+      "id": "gemini",
+      "role": "sales_operations"
+    },
+    {
+      "id": "chatgpt",
+      "role": "math_ml_research_artifacts_engineering"
+    },
+    {
+      "id": "copilot",
+      "role": "code_implementation_and_review"
+    }
+  ],
+  "shared_context": "Google Drive (authoritative until migrated)",
+  "write_policy": "reviewed_changes",
+  "last_verified": "2026-10-20"
+}

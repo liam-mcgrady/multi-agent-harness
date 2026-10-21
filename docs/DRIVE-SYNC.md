@@ -1,5 +1,8 @@
 # Drive synchronization and guarded editing (phase 1)
 
+**Current deployment choice: Option A (ChatGPT-mediated).** See [CHATGPT-MEDIATED-SYNC.md](CHATGPT-MEDIATED-SYNC.md). The Python Google API connector and GitHub Actions workflow below are optional future infrastructure and **are not required for Option A**. No new Google Cloud OAuth credentials are needed for ChatGPT's existing connected Drive and GitHub workflows. These connections do not supply credentials to standalone Python programs or GitHub Actions.
+
+
 **Authority:** Live Google Drive files remain source of truth. The GitHub repository stores code and optional metadata snapshots, not the user’s private Drive content.
 
 ## Setup

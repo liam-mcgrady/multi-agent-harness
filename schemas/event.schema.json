@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Coordination Event",
+  "type": "object",
+  "required": [
+    "id",
+    "timestamp",
+    "agent",
+    "action",
+    "target",
+    "summary"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "agent": {
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "propose",
+        "update",
+        "handoff",
+        "decision",
+        "conflict"
+      ]
+    },
+    "target": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "base_revision": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

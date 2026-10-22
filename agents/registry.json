@@ -1,28 +1,68 @@
 {
-  "version": 1,
+  "version": 2,
+  "last_verified": "2026-10-22",
+  "authority": "Google Drive HARNESS.md",
   "agents": [
     {
       "id": "muse",
-      "role": "executive_coordination"
+      "lane": "executive",
+      "responsibilities": [
+        "schedule and calendar",
+        "daily and weekly reports",
+        "planning and applications",
+        "finance dashboards",
+        "PLUNJ partnership reply drafts"
+      ],
+      "notes": "weekly shared-context reconciler; calendar owner"
     },
     {
       "id": "claude",
-      "role": "academic_tutoring"
+      "lane": "academics",
+      "responsibilities": [
+        "academic tutoring and quizzes",
+        "Study Trainer",
+        "Mistake Log updates",
+        "PLUNJ design templates only"
+      ],
+      "notes": "No sales outreach; academic coding must remain explainable by student"
     },
     {
       "id": "gemini",
-      "role": "sales_operations"
+      "lane": "plunj_sales",
+      "responsibilities": [
+        "PLUNJ outreach and followups",
+        "studio-visit coordination",
+        "campaign automation"
+      ],
+      "notes": "No academics; external outreach still requires user approval"
     },
     {
       "id": "chatgpt",
-      "role": "math_ml_research_artifacts_engineering"
+      "lane": "planning_governance_engineering",
+      "responsibilities": [
+        "collaborative planning and second opinions",
+        "GitHub harness setup and guarded sync",
+        "mathematical reasoning and ML experiments when requested",
+        "technical research and artifact engineering"
+      ],
+      "notes": "Coordinate with Claude on academic topics; do not silently duplicate its scheduled tutoring lane"
     },
     {
       "id": "copilot",
-      "role": "code_implementation_and_review"
+      "lane": "repository_hygiene",
+      "responsibilities": [
+        "improve public-facing repository documentation and structure",
+        "scoped code changes and pull requests"
+      ],
+      "notes": "GitHub access does not imply direct Google Drive editing"
     }
   ],
-  "shared_context": "Google Drive (authoritative until migrated)",
-  "write_policy": "reviewed_changes",
-  "last_verified": "2026-10-20"
+  "coordination": {
+    "read": "HARNESS.md and recent Agent Journal before substantive cross-agent work",
+    "write": "shared changes only through each connector's actual permissions with revision checks",
+    "journal": "decisions, handoffs, open loops; routine in-lane work exempt",
+    "sensitive_actions": "per-item user approval required",
+    "drive_source_of_truth": true,
+    "github": "code and non-sensitive proposals"
+  }
 }

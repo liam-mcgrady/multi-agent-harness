@@ -1,12 +1,13 @@
-# Collaborative governance proposal
+# Governance design
 
-**Status: proposal, not yet active in Google Drive HARNESS.md.**
+This is a reusable design proposal, not an assertion about any live deployment.
 
-1. Each agent may read and propose updates to relevant shared context, subject to its connector's actual permissions.
-2. Every material write records provenance (agent, date/time, target, reason, previous revision).
-3. Shared-state edits use revision checks; conflicting edits must be reconciled rather than silently overwritten.
-4. Code changes use pull requests and required review for protected branches.
-5. Approval-gated actions remain gated: outreach, applications, purchases, and transfers.
-6. Muse coordinates plans and reconciles conflicts, but is not the exclusive editor.
-7. Academic content and business records are not committed to GitHub without separate review.
-8. The live Google Drive harness remains source of truth until explicitly migrated.
+- Read current shared state before proposing a change.
+- Bind each write to a destination, actor, purpose, and base revision.
+- Reject stale writes; reconcile conflicting changes explicitly.
+- Keep approval provenance and deployment-specific role assignments private.
+- Use reviewed pull requests for code changes.
+- Treat connector permissions as independently verified capabilities.
+- Let the deployment's coordinator resolve cross-agent conflicts.
+
+The current helper functions illustrate checks, but do not authenticate callers or enforce complete end-to-end policy. Never expose them directly as a trusted authorization boundary.

@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "note": "Documentation only; CLI reads DRIVE_ALLOWLIST_IDS from the environment. Never replace these examples with real IDs in Git.",
+  "files": [
+    {
+      "name": "Example policy",
+      "id": "DEMO_POLICY_ID",
+      "mode": "metadata_only"
+    },
+    {
+      "name": "Example journal",
+      "id": "DEMO_JOURNAL_ID",
+      "mode": "metadata_only"
+    }
+  ],
+  "raw_markdown_writes": "disabled"
+}

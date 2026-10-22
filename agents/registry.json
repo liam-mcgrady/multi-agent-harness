@@ -1,19 +1,68 @@
 {
-  "version": 1,
-  "synthetic": true,
+  "version": 2,
+  "last_verified": "2026-10-22",
+  "authority": "Google Drive HARNESS.md",
   "agents": [
     {
-      "id": "planner-demo",
-      "role": "planning"
+      "id": "muse",
+      "lane": "executive",
+      "responsibilities": [
+        "schedule and calendar",
+        "daily and weekly reports",
+        "planning and applications",
+        "finance dashboards",
+        "PLUNJ partnership reply drafts"
+      ],
+      "notes": "weekly shared-context reconciler; calendar owner"
     },
     {
-      "id": "builder-demo",
-      "role": "implementation"
+      "id": "claude",
+      "lane": "academics",
+      "responsibilities": [
+        "academic tutoring and quizzes",
+        "Study Trainer",
+        "Mistake Log updates",
+        "PLUNJ design templates only"
+      ],
+      "notes": "No sales outreach; academic coding must remain explainable by student"
     },
     {
-      "id": "reviewer-demo",
-      "role": "review"
+      "id": "gemini",
+      "lane": "plunj_sales",
+      "responsibilities": [
+        "PLUNJ outreach and followups",
+        "studio-visit coordination",
+        "campaign automation"
+      ],
+      "notes": "No academics; external outreach still requires user approval"
+    },
+    {
+      "id": "chatgpt",
+      "lane": "planning_governance_engineering",
+      "responsibilities": [
+        "collaborative planning and second opinions",
+        "GitHub harness setup and guarded sync",
+        "mathematical reasoning and ML experiments when requested",
+        "technical research and artifact engineering"
+      ],
+      "notes": "Coordinate with Claude on academic topics; do not silently duplicate its scheduled tutoring lane"
+    },
+    {
+      "id": "copilot",
+      "lane": "repository_hygiene",
+      "responsibilities": [
+        "improve public-facing repository documentation and structure",
+        "scoped code changes and pull requests"
+      ],
+      "notes": "GitHub access does not imply direct Google Drive editing"
     }
   ],
-  "note": "Illustrative roles only; actual assignments belong in private deployment configuration."
+  "coordination": {
+    "read": "HARNESS.md and recent Agent Journal before substantive cross-agent work",
+    "write": "shared changes only through each connector's actual permissions with revision checks",
+    "journal": "decisions, handoffs, open loops; routine in-lane work exempt",
+    "sensitive_actions": "per-item user approval required",
+    "drive_source_of_truth": true,
+    "github": "code and non-sensitive proposals"
+  }
 }

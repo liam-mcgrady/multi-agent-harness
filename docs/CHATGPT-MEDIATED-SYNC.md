@@ -1,47 +1,16 @@
-# Option A — ChatGPT-mediated Drive ⇄ GitHub coordination
+# Connector-mediated coordination
 
-**Status:** active operating procedure for ChatGPT-assisted sessions, not a continuously running two-way synchronization service.
+This is an on-demand operating procedure for a host with authorized document and repository connectors. It creates no scheduled task and provides no continuous synchronization.
 
-## Sources of truth
+1. Read the authoritative private policy and recent relevant handoffs.
+2. Inspect the destination and capture its current revision or blob SHA.
+3. Establish authorization for the exact proposed change and destination.
+4. Apply a scoped edit using a server-enforced revision precondition.
+5. Read back once, verify the result, and record a concise private handoff.
+6. On conflict or uncertain outcome, inspect current state before retrying.
 
-- Google Drive HARNESS.md and its companion files are authoritative for agent roles, schedule, academic and business context.
-- Google Doc "Agent Journal" is the append-only cross-agent decision / handoff log; routine work within an agent's lane does not require a Journal entry.
-- GitHub holds versioned **code, schemas, tests, non-sensitive implementation decisions, and change proposals**. No broad mirroring of confidential Drive content.
-- Resolve each agent's current role from the live authoritative harness. This repository does not expand lanes or grant connector permissions. Read/write policy and technically verified capabilities are separate.
-- Your Apple/iCloud calendar is the scheduling source of truth; a Google Calendar read view is not an authorized write destination.
+GitHub file edits use the existing blob SHA. Native Google Docs appends use `requiredRevisionId` and an explicit tab ID. A Sheets range readback does not provide atomic compare-and-swap. Raw Markdown writes require a separate adapter with atomic preconditions.
 
-## ChatGPT-mediated synchronization sequence
+Private policy defines roles and calendar ownership; this public project does not prescribe a personal deployment. Conceptual permission does not grant connector access. External actions remain subject to the host's own authorization controls.
 
-1. **Read latest:** fetch live HARNESS.md and the recent Agent Journal entries before cross-agent work. Read domain files strictly as necessary.
-2. **Inspect destination:** read GitHub branch, file content and blob SHA before proposing changes. Never assume the local copy is current.
-3. **Classify:** distinguish routine in-lane work from cross-agent decisions, write proposals, sensitive records, and protected external actions.
-4. **Propose:** state files to change and exact intended behavior. For shared-state edits, require fresh revision/etag and a reviewed change. Never blindly replace another agent's work.
-5. **Apply the relevant atomic edit:**
-   - GitHub: update with existing content SHA, preferably in a topic branch and pull request.
-   - Google Docs: use `requiredRevisionId` and an explicit tab ID.
-   - Raw Drive Markdown: do not force content replacement without an adapter with version preconditions and readback.
-   - Google Sheets: use a purpose-built cell/range update and re-read the affected rows.
-6. **Verify:** read back the changed file or changed range, record revision/commit identifier and relevant summary.
-7. **Handoff:** add a concise dated Journal entry for a decision, cross-agent handoff, or open loop; skip routine in-lane narration per current HARNESS rule 7.
-8. **Resolve conflicts:** halt, re-read live state, and propose a merge; don't overwrite a newer agent's change.
-
-## Permission and confidentiality model
-
-- A rule granting agents conceptual rights **does not grant OAuth/API permissions**; each agent's connector controls its actual capabilities.
-- Never commit OAuth credentials, client secrets, private academic notes, PLUNJ sales records, financial data, or personal information into GitHub.
-- Preserve the live harness's restrictions on external actions. This protocol cannot authorize outreach, applications, purchases, or transfers; internal-update authorization does not authorize external actions.
-- The existing GitHub Actions Drive sync remains opt-in and inactive unless `DRIVE_SYNC_ENABLED=true` is explicitly configured.
-
-## Triggering
-
-- On-demand: invoke ChatGPT for a specific update or use a scheduled ChatGPT task to inspect connected context when supported.
-- Verify any scheduled review in the task system before relying on it. This repository neither creates nor proves that a scheduled task exists.
-- Do not describe this workflow as real-time or continuous.
-
-## First acceptance test
-
-1. Read HARNESS.md and the latest Agent Journal.
-2. Read the current GitHub proposal.
-3. Commit the non-sensitive mediation protocol on a GitHub branch using the latest SHA.
-4. Log the resulting cross-agent decision once in the Agent Journal with revision guard.
-5. Read back to confirm both sides show the decision.
+Existing host connections do not expose their credentials to standalone Python programs. The optional API adapter has separate credential requirements. Keep private context out of public commits, issues, pull requests, logs, and artifacts.

@@ -100,7 +100,8 @@ def main():
     current = metadata_snapshot(ids, token)
     path = Path(os.environ.get("SYNC_SNAPSHOT_PATH", "drive-snapshot.json"))
     if path.exists():
-        print(json.dumps(diff_snapshots(json.loads(path.read_text()), current), indent=2))
+        changes = diff_snapshots(json.loads(path.read_text()), current)
+        print(json.dumps({key: len(value) for key, value in changes.items()}, indent=2))
     else:
         print(json.dumps({"initial": True, "file_count": len(ids)}, indent=2))
     path.write_text(json.dumps(current, indent=2) + "\n")

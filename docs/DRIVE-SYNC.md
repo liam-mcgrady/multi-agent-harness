@@ -1,6 +1,6 @@
 # Drive synchronization and guarded editing (phase 1)
 
-**Current deployment choice: Option A (ChatGPT-mediated).** See [CHATGPT-MEDIATED-SYNC.md](CHATGPT-MEDIATED-SYNC.md). The Python Google API connector and GitHub Actions workflow below are optional future infrastructure and **are not required for Option A**. No new Google Cloud OAuth credentials are needed for ChatGPT's existing connected Drive and GitHub workflows. These connections do not supply credentials to standalone Python programs or GitHub Actions.
+**Optional integration path.** See [CHATGPT-MEDIATED-SYNC.md](CHATGPT-MEDIATED-SYNC.md). The Python Google API connector and GitHub Actions workflow below are optional future infrastructure and **are not required for Option A**. No new Google Cloud OAuth credentials are needed for ChatGPT's existing connected Drive and GitHub workflows. These connections do not supply credentials to standalone Python programs or GitHub Actions.
 
 
 **Authority:** Live Google Drive files remain source of truth. The GitHub repository stores code and optional metadata snapshots, not the user’s private Drive content.
@@ -21,6 +21,6 @@
 - Drive file `version` is not interchangeable with Docs `revisionId`.
 - Document revision IDs need fresh reads. Avoid storing them as durable edit locks for long periods.
 - Guarded append explicitly requires approval and a writable allowlist; no automatic write is invoked by scheduled tasks.
-- `endOfSegmentLocation` writes to the document body’s end; complex tabbed Docs require tab-specific targeting before this is enabled for those documents.
-- Read-only sync is safe to run unattended; edits require a separate reviewed application workflow.
+- `endOfSegmentLocation` writes to the document body’s end; the adapter requires an explicit tab ID for every append.
+- Read-only checks still expose sensitive metadata; run them in a private environment with controlled logs. Edits require a separate reviewed application workflow.
 - Never upload private academic, customer, financial, or personal document bodies as CI logs/artifacts.

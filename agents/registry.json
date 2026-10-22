@@ -1,33 +1,19 @@
 {
   "version": 1,
+  "synthetic": true,
   "agents": [
     {
-      "id": "muse",
-      "role_source": "live_authoritative_harness",
-      "capabilities": "verify_in_current_agent_session"
+      "id": "planner-demo",
+      "role": "planning"
     },
     {
-      "id": "claude",
-      "role_source": "live_authoritative_harness",
-      "capabilities": "verify_in_current_agent_session"
+      "id": "builder-demo",
+      "role": "implementation"
     },
     {
-      "id": "gemini",
-      "role_source": "live_authoritative_harness",
-      "capabilities": "verify_in_current_agent_session"
-    },
-    {
-      "id": "chatgpt",
-      "role_source": "live_authoritative_harness",
-      "capabilities": "verify_in_current_agent_session"
-    },
-    {
-      "id": "copilot",
-      "role_source": "live_authoritative_harness",
-      "capabilities": "verify_in_current_agent_session"
+      "id": "reviewer-demo",
+      "role": "review"
     }
   ],
-  "shared_context": "Google Drive (authoritative; no migration implied)",
-  "write_policy": "reviewed_changes",
-  "last_verified": "2026-10-21"
+  "note": "Illustrative roles only; actual assignments belong in private deployment configuration."
 }
